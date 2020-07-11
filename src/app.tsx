@@ -1,12 +1,8 @@
 import React from 'react';
-import './app.css';
+import { MemberTable } from './pods/member-table/member-table';
 
-function App() {
-  return (
-    <div className="App">
-      Hello World
-    </div>
-  );
+export const App = () => {
+  return <MemberTable></MemberTable>;    
 }
 
 export default App;
