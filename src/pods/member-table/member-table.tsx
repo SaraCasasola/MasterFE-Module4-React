@@ -3,12 +3,12 @@ import { MemberEntity } from './model';
 import { MemberTableRow } from './member-table-row';
 import { MemberTableHeader } from './member-table-header';
 
-export const MemberTable: React.FC = () => {
-	const [members, setMembers] = React.useState<MemberEntity[]>([]);
+interface Props {
+    members: MemberEntity[];
+}
 
-	React.useEffect(() => {
-		fetch("https://api.github.com/orgs/lemoncode/members").then((response) => response.json()).then((json) => setMembers(json));
-	}, []);
+export const MemberTable: React.FC<Props> = (props) => {
+	const {members} = props;
 
 	return (
 		<table>
