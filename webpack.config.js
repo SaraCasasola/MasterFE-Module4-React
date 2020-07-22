@@ -6,6 +6,9 @@ module.exports = {
   context: path.join(basePath, "src"),
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
+    alias: {
+      "@member-table": path.resolve(__dirname, "src/pods/member-table/")
+    }
   },
   devtool: "eval-source-map",
   entry: {

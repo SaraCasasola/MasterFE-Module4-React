@@ -1,25 +1,42 @@
 import React from 'react';
-import { MemberEntity } from './model';
-import { MemberTableRow } from './member-table-row';
-import { MemberTableHeader } from './member-table-header';
+import { Table, TableContainer } from '@material-ui/core';
+import { MemberTableHeader, MemberTableBody, MemberTableFooter, MemberEntity } from '@member-table';
 
 interface Props {
-    members: MemberEntity[];
+	members: MemberEntity[];
 }
 
-export const MemberTable: React.FC<Props> = (props) => {
-	const {members} = props;
+export const MemberTable: React.FC<Props> = (props: Props) => {
+	const { members } = props;
+	const rowsPerPageOptions = [5, 10, 25];
+	const initialPage = 0;
+	const initialMembersPerPage = rowsPerPageOptions[0];
+	const [page, setPage] = React.useState(initialPage);
+	const [membersPerPage, setMembersPerPage] = React.useState(initialMembersPerPage);
+
+	const handleChangeMembersPerPage = (event) => {
+		setMembersPerPage(parseInt(event.target.value, 10));
+		setPage(initialPage);
+	};
+
+	const handleChangePage = (event, newPage) => {
+		setPage(newPage);
+	};
 
 	return (
-		<table>
-			<thead>
+		<TableContainer>
+			<Table>
 				<MemberTableHeader></MemberTableHeader>
-			</thead>
-			<tbody>
-				{members.map((member) => (
-					<MemberTableRow key={member.id} member={member}></MemberTableRow>
-				))}
-			</tbody>
-		</table>
+				<MemberTableBody members={members} page={page} membersPerPage={membersPerPage}></MemberTableBody>
+				<MemberTableFooter
+					rowsPerPageOptions={rowsPerPageOptions}
+					page={page}
+					membersPerPage={membersPerPage}
+					totalMembers={members.length}
+					handleChangeMembersPerPage={handleChangeMembersPerPage}
+					handleChangePage={handleChangePage}>
+				</MemberTableFooter>
+			</Table>
+		</TableContainer>
 	);
 }

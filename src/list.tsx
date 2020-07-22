@@ -1,11 +1,11 @@
 import React from "react";
+import InputLabel from '@material-ui/core/InputLabel'; 
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { orange } from '@material-ui/core/colors';
 import { MemberTable } from "./pods/member-table/member-table";
-
-interface MemberEntity {
-  id: string;
-  login: string;
-  avatar_url: string;
-}
+import { MemberEntity } from "./pods/member-table/model";
 
 export const ListPage: React.FC = () => {
   const initialOrganisationToSeach = "lemoncode";
@@ -13,9 +13,9 @@ export const ListPage: React.FC = () => {
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
   const [organisation, setOrganisation] = React.useState<string>(initialOrganisationToSeach);
 
-  const handleOrganisationChange = event => {
-    setOrganisation(event.target.value);
-  };
+  React.useEffect(() => {
+    handleSearch();
+  }, []);
 
   const getMembers = async () => {
     await fetch(`https://api.github.com/orgs/${organisation}/members`)
@@ -23,21 +23,29 @@ export const ListPage: React.FC = () => {
       .then(json => setMembers(json));
   };
 
-  const handleSearch = () => {(async () => getMembers())()}
+  const handleOrganisationChange = event => {
+    setOrganisation(event.target.value);
+  };
 
-  React.useEffect(() => {
-    handleSearch();
-  }, []);
+  const handleSearch = () => {(async () => getMembers())()};
+
+  const ColorButton = withStyles((theme) => ({
+    root: {
+      color: theme.palette.getContrastText(orange[500]),
+      backgroundColor: orange[500],
+      '&:hover': {
+        backgroundColor: orange[700],
+      },
+    },
+  }))(Button);  
 
   return (
     <>
       <h2>Hello from List page</h2>
-      <label>
-        Organisation:
-        <input type="text" value={organisation} onChange={handleOrganisationChange} />
-      </label>
-      <button onClick={handleSearch}>Search</button>
-      <MemberTable members={members} />
+      <InputLabel htmlFor="organisation"> Organisation: </InputLabel>
+      <Input id="organisation" value={organisation} onChange={handleOrganisationChange} />
+      <ColorButton onClick={handleSearch}>Search</ColorButton>
+      <MemberTable members={members} />     
     </>
   );
 };
