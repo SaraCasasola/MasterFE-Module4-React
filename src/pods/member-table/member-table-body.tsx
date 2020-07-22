@@ -1,6 +1,6 @@
-import React from 'react';
-import TableBody from '@material-ui/core/TableBody';
-import { MemberTableRow, MemberEntity } from '@member-table';
+import React from "react";
+import TableBody from "@material-ui/core/TableBody";
+import { MemberTableRow, MemberEntity } from "@member-table";
 
 interface Props {
 	members: MemberEntity[];

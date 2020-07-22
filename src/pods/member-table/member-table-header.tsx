@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import {
 	TableHead,
 	TableCell,
 	TableRow
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 export const MemberTableHeader: React.FC = () => {
 	return (

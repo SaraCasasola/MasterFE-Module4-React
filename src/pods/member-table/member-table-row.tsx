@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import {
   Avatar,
   TableRow,
   TableCell
-} from '@material-ui/core';
+} from "@material-ui/core";
 import { MemberEntity } from "@member-table";
 import { Link, generatePath } from "react-router-dom";
 

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import {
 	TableRow,
 	TableFooter,
 	TablePagination
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 interface Props {
 	rowsPerPageOptions: number[];

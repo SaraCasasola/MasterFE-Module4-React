@@ -1,11 +1,12 @@
 import React from "react";
-import InputLabel from '@material-ui/core/InputLabel'; 
-import Input from '@material-ui/core/Input';
-import Button from '@material-ui/core/Button';
-import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import { orange } from '@material-ui/core/colors';
-import { MemberTable } from "./pods/member-table/member-table";
-import { MemberEntity } from "./pods/member-table/model";
+import { 
+  InputLabel, 
+  Input,
+  Button,
+  withStyles
+} from "@material-ui/core";
+import {orange} from "@material-ui/core/colors"
+import { MemberTable, MemberEntity } from "@member-table";
 
 export const ListPage: React.FC = () => {
   const initialOrganisationToSeach = "lemoncode";
@@ -33,7 +34,7 @@ export const ListPage: React.FC = () => {
     root: {
       color: theme.palette.getContrastText(orange[500]),
       backgroundColor: orange[500],
-      '&:hover': {
+      "&:hover": {
         backgroundColor: orange[700],
       },
     },
