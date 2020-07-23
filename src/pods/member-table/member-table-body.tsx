@@ -12,7 +12,7 @@ export const MemberTableBody: React.FC<Props> = (props: Props) => {
 	const { members, membersPerPage, page } = props;
 
 	const setMembersPerPage = () => {
-		return (membersPerPage > 0
+		return (members && membersPerPage > 0
 			? members.slice(page * membersPerPage, page * membersPerPage + membersPerPage)
 			: members);
 	};
@@ -20,7 +20,7 @@ export const MemberTableBody: React.FC<Props> = (props: Props) => {
 	return (
 		<TableBody>
 			{setMembersPerPage().map((member) => (
-				<MemberTableRow key={member.id} member={member}></MemberTableRow>
+				<MemberTableRow key={member.id} member={member}/>
 			))}
 		</TableBody>);
 }

@@ -26,16 +26,15 @@ export const MemberTable: React.FC<Props> = (props: Props) => {
 	return (
 		<TableContainer>
 			<Table>
-				<MemberTableHeader></MemberTableHeader>
-				<MemberTableBody members={members} page={page} membersPerPage={membersPerPage}></MemberTableBody>
+				<MemberTableHeader/>
+				<MemberTableBody members={members} page={page} membersPerPage={membersPerPage}/>
 				<MemberTableFooter
 					rowsPerPageOptions={rowsPerPageOptions}
 					page={page}
 					membersPerPage={membersPerPage}
 					totalMembers={members.length}
 					handleChangeMembersPerPage={handleChangeMembersPerPage}
-					handleChangePage={handleChangePage}>
-				</MemberTableFooter>
+					handleChangePage={handleChangePage}/>
 			</Table>
 		</TableContainer>
 	);
